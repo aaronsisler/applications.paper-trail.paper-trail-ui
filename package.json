@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy:prod": "aws s3 sync ./dist s3://paper.otterandcow.com --delete && aws cloudfront create-invalidation --distribution-id E3KJSM1RLQEIGT --paths \"/*\""
   },
   "dependencies": {
     "react": "^19.0.0",
