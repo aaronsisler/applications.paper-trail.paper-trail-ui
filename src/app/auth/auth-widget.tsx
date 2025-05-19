@@ -11,27 +11,18 @@ const scope =
 const AuthWidget = () => {
   const [authToken, setAuthToken] = useState("");
 
-  // const handleClick = async () => {
-  //   const targetUrl = `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=${redirectUri}&response_type=code&client_id=${clientId}&scope=${scope}&access_type=offline`;
-  //   const response = await fetch(targetUrl);
-  //   console.log("Response");
-  //   console.log(response);
-  // };
-
   const handleClick = () => {
     const callbackUrl = `${window.location.origin}/auth`;
-    console.log("callbackUrl");
-    console.log(callbackUrl);
     const googleClientId = clientId;
     const targetUrl = `https://accounts.google.com/o/oauth2/auth?redirect_uri=${encodeURIComponent(
       callbackUrl
-    )}&response_type=token&client_id=${googleClientId}&scope=openid%20email%20profile`;
+    )}&response_type=id_token&client_id=${googleClientId}&scope=openid%20email%20profile`;
     window.location.href = targetUrl;
   };
 
   useEffect(() => {
-    const accessTokenRegex = /access_token=([^&]+)/;
-    const isMatch = window.location.href.match(accessTokenRegex);
+    const idTokenRegex = /id_token=([^&]+)/;
+    const isMatch = window.location.href.match(idTokenRegex);
 
     if (isMatch) {
       const accessToken = isMatch[1];
