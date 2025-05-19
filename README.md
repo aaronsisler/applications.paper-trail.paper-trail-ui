@@ -1,1 +1,0 @@
-# applications.paper-trail.paper-trail-ui
