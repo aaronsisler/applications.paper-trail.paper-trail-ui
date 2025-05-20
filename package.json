@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy:prod": "aws s3 sync ./dist/paper-trail-ui/browser s3://paper.otterandcow.com --delete && aws cloudfront create-invalidation --distribution-id E3KJSM1RLQEIGT --paths \"/*\""
   },
   "private": true,
   "dependencies": {
